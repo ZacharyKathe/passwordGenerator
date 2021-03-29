@@ -2,6 +2,11 @@
 //DO NOT CHANGE THIS CODE
 var generateBtn = document.querySelector("#generate");
 
+possible = ["a", "b", "c", "d","e", "f", "g", "h", "i", "j", "k", "l", 'm', "n", "o", "p", "q", "r","s", "t","u", "v", "w", "x", "y", "z"]
+possibleUpper = ["A", 'B', 'C', 'D', 'E', 'F', 'H', 'I', 'J', 'K', 'L', 'M', 'N', "O", 'P', "Q", "R", "S", "T", "U", "V", "W", 'X', 'Y', "Z"]
+possibleNum = ['1', '2', '3', '4', '5', '6', '7', '8', "9", "0"] 
+possibleSpec = ["*", "!", "@", "#", "$", "^", "&", "+", "-", "?", "<"]
+possibleAns = []
 function do_nothing(){
   lower_return = ""
   return lower_return
@@ -66,31 +71,42 @@ function generate_SpecialC(){
 }
 
 function generatePassword(){
+   var charNum = prompt("please pick a number only, between 8-129")
    var lower = confirm("Do you want lowercase?")
    var upper = confirm("Do you want uppercase?")
    var numeric = confirm("Do you want numbers?")
    var sp_char = confirm("Do you want special characters?")
-   var len = 8
+   var password = ""
+   
    
   
      if (lower == true)
-       generate_lower()
+       possibleAns = possibleAns.concat(possible)
        else if (lower == false)
         generate_SpecialC()
      if (upper == true)
-       generate_Upper()
+       possibleAns = possibleAns.concat(possibleUpper)
        else if (upper == false)
        generate_SpecialC()
      if (numeric == true)
-       generate_Num()
+     possibleAns = possibleAns.concat(possibleNum)
        else if (numeric == false)
        do_nothing2()
      if (sp_char == true)
-       generate_SpecialC()
+     possibleAns = possibleAns.concat(possibleSpec)
        else if (sp_char == false)
        do_nothing3()
-      return lower_return + specRtn + numberReturn + upperReturn + specRtn1
-     
+
+    //var possibleJoin = possibleAns.join('')
+    console.log(possibleAns)
+
+  
+    for (let i = 0; i < charNum; i++) {
+      password += possibleAns[Math.floor(Math.random() * possibleAns.length)]
+      console.log(password)
+    }
+
+      return password
      
      
 }
